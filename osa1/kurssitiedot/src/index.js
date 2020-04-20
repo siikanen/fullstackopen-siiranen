@@ -1,18 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Header = (props) => {
-  return <h1>{props.course}</h1>
-}
+const Header = (props) => <h1>{props.course}</h1>
 
-const Part = (props) => {
-  return (
+const Part = (props) => (
     <p>{props.info.name} {props.info.exercises}</p>
-  )
-}
+)
 
-const Content = (props) => {
-  const parts = props.parts
+const Content = ( {parts} ) => {
   const partList = parts.map( data => <Part info={data} />)
   return  (
     <> {partList} </>
