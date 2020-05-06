@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 //import './App.css';
 
 const Person = ({name,number}) => {
@@ -71,6 +72,14 @@ const PersonForm = ({persons, setPersonsFunction}) => {
 const App = () => {
   const [filter, setFilter] = useState(null)
   const [persons, setPersons] = useState([])
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/persons")
+      .then(response => {
+        setPersons(response.data)
+      })
+  }, [])
   
   const personsToShow = persons.filter( 
       person => {
