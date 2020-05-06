@@ -9,7 +9,6 @@ const Person = ({name,number}) => {
 }
 
 const Filter = ({setFilterFunction}) => {
-
   const handleFilterChange = (event) => {
     const filter = event.target.value
     filter === "" 
@@ -25,7 +24,6 @@ const Filter = ({setFilterFunction}) => {
     />
     </>
   )
-
 }
 
 const PersonForm = ({persons, setPersonsFunction}) => {
