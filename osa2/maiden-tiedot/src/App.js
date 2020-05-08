@@ -38,11 +38,9 @@ const Country = ({countryData}) => {
       .then(
         response => {
           setWeather(response.data)
-        },
-        err => {
-          console.log("Could not fetch weatherdata", err)
         }
       )
+      .catch(err => console.log("Could not fetch weatherdata", err))
   }, [countryData.name, api_key])
   return (
     <div>
@@ -114,8 +112,8 @@ const App = () => {
       .get('https://restcountries.eu/rest/v2/all')
       .then(response => {
         setCountries(response.data)
-      },
-      err => console.log("Could not fetch countrydata", err))
+      })
+      .catch(err => console.log("Could not fetch countrydata", err))
   }, [])
 
   const countriesToShow = countries.filter(
