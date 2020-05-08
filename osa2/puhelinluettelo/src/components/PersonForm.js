@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import phonebookService from '../services/phonebook'
 
-const PersonForm = ({persons, setPersonsFunction}) => {
+const PersonForm = ({persons, setPersonsFunction, messageHandler}) => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   
@@ -22,6 +22,7 @@ const PersonForm = ({persons, setPersonsFunction}) => {
           .then(responseObj => {
             setPersonsFunction(persons.map(
               name => name.id === alreadyInBook.id ? responseObj : name))
+            messageHandler(`${responseObj.name} updated successfully`, 'success')
           })
         .catch(err => console.error(err))
       }
@@ -30,6 +31,7 @@ const PersonForm = ({persons, setPersonsFunction}) => {
         .create(newNameObj)
         .then(responseObj => {
           setPersonsFunction(persons.concat(responseObj))
+          messageHandler(`${responseObj.name} added successfully`, 'success')
         })
     }
   }
