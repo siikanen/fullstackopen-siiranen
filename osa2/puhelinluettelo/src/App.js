@@ -18,8 +18,8 @@ const App = () => {
     .getAll()
     .then(initialPersons => setPersons(initialPersons))
   }, [])
-  
-  const personsToShow = persons.filter( 
+
+  const personsToShow = persons.filter(
       person => {
         // if filter is empty, return all names
         if ( filter === null )
@@ -60,18 +60,18 @@ const App = () => {
       <Notification message={message.msg} style={message.style} />
       <Filter setFilterFunction={setFilter} />
       <h2>Add new</h2>
-      <PersonForm 
-        persons={persons} 
+      <PersonForm
+        persons={persons}
         setPersonsFunction={setPersons}
         messageHandler={messageHandler}
       />
       <h2>Numbers</h2>
         <ul>
-          {personsToShow.map((person) => 
-            <Person 
-              key={person.id} 
-              name={person.name} 
-              number={person.number} 
+          {personsToShow.map((person) =>
+            <Person
+              key={person.id}
+              name={person.name}
+              number={person.number}
               handleRemove={() => removePersonId(person.id)}
             />
           )}
