@@ -9,14 +9,24 @@ mongoose
   .connect(dbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   })
   .then(() => console.log('Connected to the database'))
   .catch((err) => console.log('Failed to connect to the database', err.message))
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: {
+    type: String,
+    minlength: 5,
+    unique: true,
+  },
+  number: {
+    type: String,
+    minlength: 5,
+  },
 })
+
+personSchema.plugin(require('mongoose-beautiful-unique-validation'))
 
 personSchema.set('toJSON', {
   transform: (_document, returnedObj) => {
